@@ -1,0 +1,81 @@
+package me.OnlineMetLesley.com.FlyVoucher;
+
+import java.util.Iterator;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+public class FlyVoucherCommand implements CommandExecutor {
+   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+      String Help;
+      Iterator var6;
+      Player target;
+      if (!(sender instanceof Player)) {
+         if (command.getName().equalsIgnoreCase("flyvoucher")) {
+            if (args.length == 0) {
+               var6 = Main.instance.getConfig().getStringList("Help").iterator();
+
+               while(var6.hasNext()) {
+                  Help = (String)var6.next();
+                  sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Help));
+               }
+            }
+
+            if (args.length == 1 && args[0].equalsIgnoreCase("give")) {
+               var6 = Main.instance.getConfig().getStringList("Help").iterator();
+
+               while(var6.hasNext()) {
+                  Help = (String)var6.next();
+                  sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Help));
+               }
+            }
+
+            if (args.length == 2 && args[0].equalsIgnoreCase("give")) {
+               target = Bukkit.getPlayer(args[1]);
+               target.getInventory().addItem(new ItemStack[]{Main.Voucher()});
+               target.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.instance.getConfig().getString("TargetMessage")) + " " + " Console");
+            }
+         }
+
+         return false;
+      } else if (!(sender instanceof Player)) {
+         return false;
+      } else {
+         if (sender.hasPermission("Flyvoucher.help")) {
+            if (command.getName().equalsIgnoreCase("flyvoucher")) {
+               if (args.length == 0) {
+                  var6 = Main.instance.getConfig().getStringList("Help").iterator();
+
+                  while(var6.hasNext()) {
+                     Help = (String)var6.next();
+                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Help));
+                  }
+               }
+
+               if (args.length == 1 && args[0].equalsIgnoreCase("give")) {
+                  var6 = Main.instance.getConfig().getStringList("Help").iterator();
+
+                  while(var6.hasNext()) {
+                     Help = (String)var6.next();
+                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Help));
+                  }
+               }
+
+               if (args.length == 2 && args[0].equalsIgnoreCase("give")) {
+                  target = Bukkit.getPlayer(args[1]);
+                  target.getInventory().addItem(new ItemStack[]{Main.Voucher()});
+                  target.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.instance.getConfig().getString("TargetMessage")) + " " + sender.getName());
+               }
+            }
+         } else {
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.instance.getConfig().getString("NoPermissions")));
+         }
+
+         return false;
+      }
+   }
+}
