@@ -1,0 +1,13 @@
+name: FlyVoucher
+author: OnlineMetLesley
+version: 1.0
+main: me.OnlineMetLesley.com.FlyVoucher.Main
+loadbefore: [Essentials]
+permissions:
+  Flyvoucher.Flyvoucher:
+    description: Ability to use a flyvoucher command.
+commands:
+  flyvoucher:
+    description: Command to give players a Fly Voucher.
+  fly:
+    description: Enable or disable your fly.
