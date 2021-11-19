@@ -1,0 +1,18 @@
+package me.OnlineMetLesley.com.FlyVoucher;
+
+import org.bukkit.ChatColor;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerDropItemEvent;
+
+public class PlayerDropEvent implements Listener {
+   @EventHandler
+   public void DropEvent(PlayerDropItemEvent event) {
+      if (event.getPlayer().getInventory().contains(Main.Voucher()) && event.getItemDrop().getItemStack().equals(Main.Voucher())) {
+         event.getPlayer().setAllowFlight(false);
+         event.getPlayer().setFlying(false);
+         event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Main.instance.getConfig().getString("FlyingNoVoucherMessage")));
+      }
+
+   }
+}
