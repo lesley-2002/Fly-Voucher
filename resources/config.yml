@@ -1,0 +1,44 @@
+
+
+#Hello this plugin is made by OnlineMetlesley.
+#If you have any questions or bug reports, please join our discord. https://invite.gg/omlplugins
+#Thanks for buying this plugin it really helps :)
+
+#Displayname of the Fly Voucher
+Displayname: '&a&lFly Voucher'
+
+#Lore of the Voucher item
+Lore:
+  - '&7Whenever you have this item in your Inventory'
+  - '&7you are able to fly.'
+  - ''
+  - '&3* &7Right-Click this item to activate Fly.'
+  - '&3* &7Or use /fly to enable fly.'
+
+#Help Command
+Help:
+  - '&6&m--------------------'
+  - '&e/Flyvouchers give {player}'
+  - '&6&m--------------------'
+  
+#Do you want to let players right click the voucher to let them start flying?
+RightClickVoucher: true
+#Message when player right clicked the Voucher
+RightClickConfirmed: '&aYou activated your Fly Voucher!'
+
+#Message when the target person gets a Fly Voucher
+TargetMessage: '&6You recieved a Fly Voucher from&e'
+
+#Fly enabled/disabled Message
+FlyEnabled: '&aFly has been enabled!'
+FlyDisabled: '&cFly has been disabled!'
+
+#When a player tries to use the Fly command and he/she doesn't have a Fly Voucher
+NoVoucherMessage: '&cYou do not have a Fly Voucher!'
+
+#Whenever someone is flying and he/she dropped the Voucher message
+FlyingNoVoucherMessage: '&c&lYour Fly Voucher isnt in your inventory. Flight Disabled.'
+
+#No permissions Message
+NoPermissions: '&cYou do not have access to this command.'
+
