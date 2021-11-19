@@ -1,0 +1,30 @@
+package me.OnlineMetLesley.com.FlyVoucher;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+public class FlyCommand implements CommandExecutor {
+   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+      if (command.getName().equalsIgnoreCase("fly")) {
+         Player player = (Player)sender;
+         if (player.getInventory().contains(Main.Voucher())) {
+            if (!player.getAllowFlight()) {
+               player.setAllowFlight(true);
+               player.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.instance.getConfig().getString("FlyEnabled")));
+            } else {
+               player.setAllowFlight(false);
+               player.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.instance.getConfig().getString("FlyDisabled")));
+            }
+         } else {
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.instance.getConfig().getString("NoVoucherMessage")));
+         }
+
+         return true;
+      } else {
+         return false;
+      }
+   }
+}
