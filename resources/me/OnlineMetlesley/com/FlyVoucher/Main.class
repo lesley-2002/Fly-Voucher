@@ -1,0 +1,51 @@
+package me.OnlineMetLesley.com.FlyVoucher;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.Server;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class Main extends JavaPlugin {
+   FileConfiguration config = this.getConfig();
+   Server getserver = this.getServer();
+   public static Plugin instance;
+
+   public void onEnable() {
+      instance = this;
+      this.saveDefaultConfig();
+      this.config.options().copyDefaults(true);
+      new MetricsLite(this);
+      this.getCommand("fly").setExecutor(new FlyCommand());
+      this.getCommand("flyvoucher").setExecutor(new FlyVoucherCommand());
+      Bukkit.getServer().getPluginManager().registerEvents(new PlayerDropEvent(), this);
+      Bukkit.getServer().getPluginManager().registerEvents(new PlayerInteract(), this);
+   }
+
+   public Plugin getInstance() {
+      return instance;
+   }
+
+   public static ItemStack Voucher() {
+      ItemStack Voucher = new ItemStack(Material.FEATHER);
+      ArrayList<String> Voucherlore = new ArrayList();
+      ItemMeta Vouchermeta = Voucher.getItemMeta();
+      Vouchermeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', instance.getConfig().getString("Displayname")));
+      Iterator var4 = instance.getConfig().getStringList("Lore").iterator();
+
+      while(var4.hasNext()) {
+         String lore = (String)var4.next();
+         Voucherlore.add(ChatColor.translateAlternateColorCodes('&', lore));
+      }
+
+      Vouchermeta.setLore(Voucherlore);
+      Voucher.setItemMeta(Vouchermeta);
+      return Voucher;
+   }
+}
